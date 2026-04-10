@@ -24,8 +24,8 @@ struct ContentView: View {
                 VStack(spacing: 16) {
                     ArrowLoaderView()
                     Text("Loading your watchlist...")
-                        .font(.custom("WorkSans-Regular", size: 15))
-                        .foregroundColor(.gray)
+                        .font(.custom("WorkSans-Medium", size: 15))
+                        .foregroundColor(AppColors.secondaryText)
                 }
                 Spacer()
             } else {
@@ -53,10 +53,10 @@ struct ContentView: View {
                                         .foregroundColor(.gray)
                                     Text("No results found")
                                         .font(.custom("WorkSans-SemiBold", size: 18))
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(AppColors.secondaryText)
                                     Text("No stocks match \"\(viewModel.searchQuery)\"")
-                                        .font(.custom("WorkSans-Regular", size: 14))
-                                        .foregroundColor(.gray)
+                                        .font(.custom("WorkSans-Medium", size: 14))
+                                        .foregroundColor(AppColors.secondaryText)
                                     Button(action: { viewModel.searchQuery = "" }) {
                                         Text("Clear search")
                                             .font(.custom("WorkSans-Medium", size: 14))

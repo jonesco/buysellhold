@@ -7,7 +7,7 @@ struct EmptyStateView: View {
         VStack(alignment: .leading, spacing: 28) {
             Text("Welcome,")
                 .font(.custom("WorkSans-Regular", size: 32))
-                .foregroundColor(.gray)
+                .foregroundColor(AppColors.secondaryText)
                 .kerning(-0.4)
 
             VStack(alignment: .leading, spacing: 6) {
@@ -16,7 +16,7 @@ struct EmptyStateView: View {
                     .foregroundColor(AppColors.foreground)
                 Text("Add a stock,\nset a baseline price.")
                     .font(.custom("WorkSans-Regular", size: 32))
-                    .foregroundColor(.gray)
+                    .foregroundColor(AppColors.secondaryText)
                     .kerning(-0.4)
             }
 
@@ -25,12 +25,12 @@ struct EmptyStateView: View {
                     .font(.custom("WorkSans-Bold", size: 32))
                     .foregroundColor(AppColors.foreground)
                 (
-                    Text("Set a buy ").foregroundColor(.gray)
+                    Text("Set a buy ").foregroundColor(AppColors.secondaryText)
                     + Text("↓").foregroundColor(AppColors.buyGreen).font(.custom("WorkSans-Bold", size: 32))
-                    + Text(" price\n").foregroundColor(.gray)
-                    + Text("and sell ").foregroundColor(.gray)
+                    + Text(" price\n").foregroundColor(AppColors.secondaryText)
+                    + Text("and sell ").foregroundColor(AppColors.secondaryText)
                     + Text("↑").foregroundColor(AppColors.sellPurpleAlt).font(.custom("WorkSans-Bold", size: 32))
-                    + Text(" price.").foregroundColor(.gray)
+                    + Text(" price.").foregroundColor(AppColors.secondaryText)
                 )
                 .font(.custom("WorkSans-Regular", size: 32))
                 .kerning(-0.4)

@@ -82,8 +82,8 @@ struct StockCardView: View {
                             }
                         }
                         Text(relativeDate(item.updatedAt))
-                            .font(.custom("WorkSans-Regular", size: 11))
-                            .foregroundColor(.gray)
+                            .font(.custom("WorkSans-Medium", size: 13))
+                            .foregroundColor(AppColors.secondaryText)
                     }
                     .frame(minWidth: 80, alignment: .leading)
 
@@ -203,16 +203,16 @@ struct SliderSection: View {
                 // Low
                 VStack(spacing: 2) {
                     Text("Low")
-                        .font(.custom("WorkSans-Regular", size: 12))
-                        .foregroundColor(.gray)
+                        .font(.custom("WorkSans-Medium", size: 12))
+                        .foregroundColor(AppColors.secondaryText)
                     Text("$\(lowPrice, specifier: "%.2f")")
                         .font(.custom("WorkSans-Medium", size: 13))
                         .monospacedDigit()
                         .foregroundColor(AppColors.foreground)
                     Text("\(lowPercent, specifier: "%.2f")%")
-                        .font(.custom("WorkSans-Regular", size: 11))
+                        .font(.custom("WorkSans-Medium", size: 13))
                         .monospacedDigit()
-                        .foregroundColor(AppColors.buyGreen)
+                        .foregroundColor(AppColors.buyGreenDark)
                 }
                 .frame(minWidth: 60)
 
@@ -228,7 +228,7 @@ struct SliderSection: View {
                             .monospacedDigit()
                             .foregroundColor(AppColors.foreground)
                             .padding(.horizontal, 4)
-                            .background(Color.white.opacity(0.8))
+                            .background(Color.white)
                             .cornerRadius(2)
                             .offset(x: indicatorX - trackWidth / 2)
 
@@ -250,14 +250,14 @@ struct SliderSection: View {
                 // High
                 VStack(spacing: 2) {
                     Text("High")
-                        .font(.custom("WorkSans-Regular", size: 12))
-                        .foregroundColor(.gray)
+                        .font(.custom("WorkSans-Medium", size: 12))
+                        .foregroundColor(AppColors.secondaryText)
                     Text("$\(highPrice, specifier: "%.2f")")
                         .font(.custom("WorkSans-Medium", size: 13))
                         .monospacedDigit()
                         .foregroundColor(AppColors.foreground)
                     Text("\(highPercent, specifier: "%.2f")%")
-                        .font(.custom("WorkSans-Regular", size: 11))
+                        .font(.custom("WorkSans-Medium", size: 13))
                         .monospacedDigit()
                         .foregroundColor(AppColors.sellPurple)
                 }

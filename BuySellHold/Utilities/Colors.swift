@@ -35,6 +35,8 @@ enum AppColors {
     // UI
     static let background = Color.white
     static let foreground = Color(hex: "#161616")
+    static let secondaryText = Color(hex: "#4b5563")   // ~7.4:1 on white, AA compliant
+    static let buyGreenDark = Color(hex: "#15803d")    // ~4.9:1 on white, AA compliant for normal text
     static let cardDark = Color(hex: "#181A20")
     static let inputDark = Color(hex: "#1E2026")
     static let borderDark = Color(hex: "#374151")

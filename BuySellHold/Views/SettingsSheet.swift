@@ -519,7 +519,7 @@ private struct BackupSettingsView: View {
                 }
 
                 Text("Replace removes your current watchlist and imports the file. Merge updates matching symbols and adds missing ones.")
-                    .font(.custom("WorkSans-Regular", size: 12))
+                    .font(.custom("WorkSans-Regular", size: 13))
                     .foregroundColor(.gray)
             }
             .padding(20)
