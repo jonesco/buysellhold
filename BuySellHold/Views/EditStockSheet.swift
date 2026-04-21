@@ -14,6 +14,8 @@ struct EditStockSheet: View {
     @State private var lowPercentageText: String
     @State private var lowPercentage: Double?
     @State private var highPercentage: Double?
+    @State private var resetFlash = false
+    @State private var showResetNotice = false
 
     init(item: WatchlistItem, viewModel: WatchlistViewModel) {
         self.item = item
@@ -54,13 +56,13 @@ struct EditStockSheet: View {
                     .padding(.vertical, 8)
 
                     // Target Price
-                    DarkInputField(label: "Target Price", text: $targetPriceText, onChange: recalcPricesFromPercentages) {
+                    DarkInputField(label: "Target Price", text: $targetPriceText, highlighted: resetFlash, onChange: recalcPricesFromPercentages) {
                         recalcPricesFromPercentages()
                     }
 
                     // Low Price
                     HStack(spacing: 8) {
-                        DarkInputField(label: "Low Price", text: $lowPriceText, onChange: {
+                        DarkInputField(label: "Low Price", text: $lowPriceText, highlighted: resetFlash, onChange: {
                             if let low = lowPrice, let target = targetPrice, target > 0 {
                                 let computedLow = ((low - target) / target) * 100
                                 lowPercentage = computedLow
@@ -109,14 +111,14 @@ struct EditStockSheet: View {
                             .padding(10)
                             .background(AppColors.inputDark)
                             .cornerRadius(8)
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(AppColors.borderDark, lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(resetFlash ? AppColors.buyGreen : AppColors.borderDark, lineWidth: resetFlash ? 2 : 1))
                         }
                         .frame(width: 80)
                     }
 
                     // High Price
                     HStack(spacing: 8) {
-                        DarkInputField(label: "High Price", text: $highPriceText, onChange: {
+                        DarkInputField(label: "High Price", text: $highPriceText, highlighted: resetFlash, onChange: {
                             if let high = highPrice, let target = targetPrice, target > 0 {
                                 highPercentage = ((high - target) / target) * 100
                             }
@@ -152,9 +154,18 @@ struct EditStockSheet: View {
                             .padding(10)
                             .background(AppColors.inputDark)
                             .cornerRadius(8)
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(AppColors.borderDark, lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(resetFlash ? AppColors.buyGreen : AppColors.borderDark, lineWidth: resetFlash ? 2 : 1))
                         }
                         .frame(width: 80)
+                    }
+
+                    // Reset notice
+                    if showResetNotice {
+                        Text("Prices reset to defaults")
+                            .font(.custom("WorkSans-Regular", size: 13))
+                            .foregroundStyle(AppColors.buyGreen)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .transition(.opacity)
                     }
 
                     // Buttons
@@ -261,6 +272,17 @@ struct EditStockSheet: View {
         highPercentage = prefs.defaultHighPercentage
         lowPercentage = prefs.defaultLowPercentage
         lowPercentageText = String(format: "%.1f", prefs.defaultLowPercentage)
+
+        withAnimation(.easeIn(duration: 0.15)) {
+            resetFlash = true
+            showResetNotice = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation(.easeOut(duration: 0.4)) {
+                resetFlash = false
+                showResetNotice = false
+            }
+        }
     }
 
     private func saveChanges() {
@@ -299,6 +321,7 @@ private struct DarkInputField: View {
     let label: String
     @Binding var text: String
     var placeholder: String = "Enter value"
+    var highlighted: Bool = false
     var onChange: (() -> Void)? = nil
     var onCommit: () -> Void = {}
 
@@ -327,7 +350,7 @@ private struct DarkInputField: View {
             .padding(10)
             .background(AppColors.inputDark)
             .cornerRadius(8)
-            .overlay(RoundedRectangle(cornerRadius: 8).stroke(AppColors.borderDark, lineWidth: 1))
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(highlighted ? AppColors.buyGreen : AppColors.borderDark, lineWidth: highlighted ? 2 : 1))
         }
     }
 }
