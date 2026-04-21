@@ -159,45 +159,46 @@ struct EditStockSheet: View {
                         .frame(width: 80)
                     }
 
-                    // Reset notice
+                    // Reset notice / Buttons
                     if showResetNotice {
                         Text("Prices reset to defaults")
                             .font(.custom("WorkSans-Regular", size: 13))
                             .foregroundStyle(AppColors.buyGreen)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, 8)
                             .transition(.opacity)
-                    }
+                    } else {
+                        HStack {
+                            // Reset button
+                            Button(action: resetToDefaults) {
+                                Text("Reset")
+                                    .font(.custom("WorkSans-Regular", size: 15))
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white, lineWidth: 1))
+                            }
 
-                    // Buttons
-                    HStack {
-                        // Reset button
-                        Button(action: resetToDefaults) {
-                            Text("Reset")
+                            Spacer()
+
+                            Button("Cancel") { dismiss() }
                                 .font(.custom("WorkSans-Regular", size: 15))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white, lineWidth: 1))
+                                .foregroundColor(Color.gray)
+                                .padding(.trailing, 16)
+
+                            Button(action: saveChanges) {
+                                Text("Save Changes")
+                                    .font(.custom("WorkSans-Medium", size: 15))
+                                    .foregroundColor(AppColors.foreground)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .background(Color.white)
+                                    .cornerRadius(8)
+                            }
                         }
-
-                        Spacer()
-
-                        Button("Cancel") { dismiss() }
-                            .font(.custom("WorkSans-Regular", size: 15))
-                            .foregroundColor(Color.gray)
-                            .padding(.trailing, 16)
-
-                        Button(action: saveChanges) {
-                            Text("Save Changes")
-                                .font(.custom("WorkSans-Medium", size: 15))
-                                .foregroundColor(AppColors.foreground)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(Color.white)
-                                .cornerRadius(8)
-                        }
+                        .padding(.top, 8)
+                        .transition(.opacity)
                     }
-                    .padding(.top, 8)
                 }
                 .padding(20)
             }
