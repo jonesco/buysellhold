@@ -48,7 +48,7 @@ struct EditStockSheet: View {
                             .foregroundColor(.white)
                         Text("Current price: $\(price, specifier: "%.2f")")
                             .font(.custom("WorkSans-Regular", size: 14))
-                            .foregroundColor(Color.gray)
+                            .foregroundStyle(Color.gray)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 8)
@@ -76,12 +76,12 @@ struct EditStockSheet: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("%")
                                 .font(.custom("WorkSans-Medium", size: 13))
-                                .foregroundColor(Color.gray)
+                                .foregroundStyle(Color.gray)
                             ZStack(alignment: .leading) {
                                 if lowPercentageText.isEmpty {
                                     Text("%")
                                         .font(.custom("WorkSans-Regular", size: 15))
-                                        .foregroundColor(AppColors.holdGray)
+                                        .foregroundStyle(AppColors.holdGray)
                                 }
                                 TextField("", text: $lowPercentageText)
                                 .onChange(of: lowPercentageText) { _, newValue in
@@ -128,12 +128,12 @@ struct EditStockSheet: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("%")
                                 .font(.custom("WorkSans-Medium", size: 13))
-                                .foregroundColor(Color.gray)
+                                .foregroundStyle(Color.gray)
                             ZStack(alignment: .leading) {
                                 if highPercentage == nil {
                                     Text("%")
                                         .font(.custom("WorkSans-Regular", size: 15))
-                                        .foregroundColor(AppColors.holdGray)
+                                        .foregroundStyle(AppColors.holdGray)
                                 }
                                 TextField("", text: Binding(
                                     get: { highPercentage != nil ? String(format: "%.1f", highPercentage!) : "" },
@@ -306,12 +306,12 @@ private struct DarkInputField: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
                 .font(.custom("WorkSans-Medium", size: 13))
-                .foregroundColor(Color.gray)
+                .foregroundStyle(Color.gray)
             ZStack(alignment: .leading) {
                 if text.isEmpty {
                     Text(placeholder)
                         .font(.custom("WorkSans-Regular", size: 15))
-                        .foregroundColor(AppColors.holdGray)
+                        .foregroundStyle(AppColors.holdGray)
                 }
                 TextField("", text: Binding(
                     get: { text },
